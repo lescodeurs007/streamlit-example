@@ -1,26 +1,15 @@
+import streamlit.components.v1 as components
 
-# streamlit_app.py
+# Declare the component:
+my_component = components.declare_component("my_component", path="frontend/build")
 
-import streamlit as st
-import mysql.connector
-# streamlit_app.py
-\
-
-# Initialize connection.
-# Uses st.experimental_singleton to only run once.
-
-
-conn = mysql.connector.connect(**st.secrets["mysql"])
-
-# Perform query.
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
-
-rows = run_query("SELECT * from STUDENTS")
-
-# Print results.
-for row in rows:
-    st.write(f"{row[0]} has a :{row[1]}:")
+# Use it:
+my_component(greeting="Hello", name="World")
+class MyComponent extends StreamlitComponentBase {
+    public render(): ReactNode {
+        // Access arguments from Python via `this.props.args`:
+        const greeting = this.props.args["greeting"]
+        const name = this.props.args["name"]
+        return <div>{greeting}, {name}!</div>
+    }
+}
