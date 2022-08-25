@@ -6,7 +6,7 @@ import pandas as pd
 
 import streamlit as st
 # streamlit_app.py
-import mysql.connector
+\
 
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
