@@ -11,10 +11,8 @@ import streamlit as st
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
 
-def init_connection():
-    return mysql.connector.connect(**st.secrets["mysql"])
 
-conn = init_connection()
+conn = mysql.connector.connect(**st.secrets["mysql"])
 
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
